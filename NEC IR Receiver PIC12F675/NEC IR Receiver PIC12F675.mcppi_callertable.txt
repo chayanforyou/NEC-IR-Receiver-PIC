@@ -1,0 +1,2 @@
+main
+	nec_remote_read

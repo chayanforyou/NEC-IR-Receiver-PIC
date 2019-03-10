@@ -16,6 +16,8 @@ __ps2_scroll
 __ps2_shift
 __savepclath
 __savestatus
+_adc_external_vrefh
+_adc_internal_vrefh
 _ch
 _command
 _doprnti
@@ -41,6 +43,7 @@ acos
 adc_get_sample
 adc_get_sample_ptr
 adc_init
+adc_init_advanced
 adc_read
 adcon0
 adcs0
@@ -91,6 +94,7 @@ button
 byte2double
 bytetohex
 bytetostr
+bytetostrwithzeros
 c
 c_bit
 cal0
@@ -182,6 +186,7 @@ f
 fabs
 fixsign32
 floattostr
+floattostr_fixlen
 floor
 freemem
 frexp
@@ -215,6 +220,7 @@ gpif
 gpif_bit
 gpio
 halfbits
+i
 ics_auto
 ics_off
 indf
@@ -354,6 +360,7 @@ peie
 peie_bit
 pie1
 pir1
+port_to_tris_offset
 pow
 ps0
 ps0_bit
@@ -389,19 +396,15 @@ rp0
 rp0_bit
 rp1
 rp1_bit
-rs
 rtrim
 sdiv3232l
-serial_lcd_chr
-serial_lcd_cmd
-serial_lcd_init
-serial_lcd_out
 setfdz32
 setfov32
 setfun32
 setiov3224
 shorttohex
 shorttostr
+shorttostrwithzeros
 sin
 sine3
 sinh
@@ -511,6 +514,7 @@ vr2_bit
 vr3
 vr3_bit
 vrcon
+vref_mask
 vren
 vren_bit
 vrr
@@ -537,7 +541,6 @@ wren
 wren_bit
 wrerr
 wrerr_bit
-writenibble
 xtoi
 z
 z_bit

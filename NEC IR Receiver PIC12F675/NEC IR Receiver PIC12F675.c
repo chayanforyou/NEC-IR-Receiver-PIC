@@ -6,6 +6,8 @@ unsigned long ir_code;
 unsigned int address;
 unsigned short command, inv_command;
 
+unsigned char i;
+
 short nec_remote_read() {
 
   unsigned long count = 0, i;
@@ -14,26 +16,22 @@ short nec_remote_read() {
     count++;
     delay_us(40);
   }
-  if ( (count > 179) || (count < 80))     // NEC protocol?
-    return 0;
-
+  
   count = 0;
   // Check 4.5ms space (remote control sends logic low)
   while (IR_PIN && (count < 90)) {
     count++;
     delay_us(40);
   }
-  if ( (count > 89) || (count < 10))       // NEC protocol?
-    return 0;
 
   // Read code message (32-bit)
   for (i = 0; i < 32; i++) {
     count = 0;
-    while ((IR_PIN == 0) && (count < 10)) {
+    while ((IR_PIN == 0) && (count < 15)) {
       count++;
       delay_us(30);
     }
-    if ( (count > 9) || (count < 2))     // NEC protocol?
+    if ( (count > 14) || (count < 2))     // NEC protocol?
       return 0;
 
     count = 0;
@@ -70,10 +68,10 @@ void main()
       command = ir_code >> 8;
 
       switch (command) {
-        case 0x48:
+        case 0x68:
           LED_PIN = 1;
           break;
-        case 0x80:
+        case 0x30:
           LED_PIN = 0;
           break;
       }

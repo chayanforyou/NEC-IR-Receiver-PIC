@@ -1,4 +1,4 @@
-#line 1 "C:/Users/Minion/Documents/microC pro/NEC IR Receiver PIC12F675/NEC IR Receiver PIC12F675.c"
+#line 1 "D:/microC pro/mikroC pro PIC/NEC IR Receiver PIC12F675/NEC IR Receiver PIC12F675.c"
 
 
 
@@ -6,6 +6,8 @@
 unsigned long ir_code;
 unsigned int address;
 unsigned short command, inv_command;
+
+unsigned char i;
 
 short nec_remote_read() {
 
@@ -15,8 +17,6 @@ short nec_remote_read() {
  count++;
  delay_us(40);
  }
- if ( (count > 179) || (count < 80))
- return 0;
 
  count = 0;
 
@@ -24,17 +24,15 @@ short nec_remote_read() {
  count++;
  delay_us(40);
  }
- if ( (count > 89) || (count < 10))
- return 0;
 
 
  for (i = 0; i < 32; i++) {
  count = 0;
- while (( GP3_bit  == 0) && (count < 10)) {
+ while (( GP3_bit  == 0) && (count < 15)) {
  count++;
  delay_us(30);
  }
- if ( (count > 9) || (count < 2))
+ if ( (count > 14) || (count < 2))
  return 0;
 
  count = 0;
@@ -71,10 +69,10 @@ void main()
  command = ir_code >> 8;
 
  switch (command) {
- case 0x48:
+ case 0x68:
   GP2_bit  = 1;
  break;
- case 0x80:
+ case 0x30:
   GP2_bit  = 0;
  break;
  }
